@@ -1,0 +1,49 @@
+1. Theory:
+HDFS (Hadoop Distributed File System) is designed to store large datasets reliably and to stream those datasets to user applications at high bandwidth.
+HDFS is built to be fault-tolerant, with data replication across multiple nodes, ensuring that data remains available even if some nodes fail.
+Basic commands in HDFS are similar to Unix commands and can be executed through the Hadoop command-line interface.
+Common operations include creating directories, uploading files, downloading files, listing directory contents, and removing files.
+HDFS is optimized for high throughput access to application data and is suitable for applications that have large datasets and require data to be processed in parallel.
+
+code:
+ls // content of folders
+mkdir Hadoop // directory created
+ls
+cd Hadoop
+vi hello.txt  // command mode press i to get in insert mode
+hello everyone // esc and press wq for exiting
+ls
+cat hello.txt // to see the content of the file
+hdfs dfs -mkdir /today    // creating folder on hdfs named today
+hdfs dfs -put hello.txt /today/data.txt // copy file hello.txt on todays folder and renaming it data.txt
+hdfs dfs -cat /today/data.txt   //read wheather changes are done
+hdfs dfs -rmdir /folder    //to delete the folder
+hdfs dfs -mkdir /folder1
+hdfs dfs -cp /today/data.txt /folder1/data.txt   //copy file from one to another folder
+hdfs dfs -cat /folder1/data.txt
+hdfs dfs -get /folder1/data.txt     //transfer file from hadoop to local system
+ls
+
+
+
+
+# Create a new directory in HDFS
+hdfs dfs -mkdir /user/data
+
+# List files in HDFS directory
+hdfs dfs -ls /user/
+
+# Upload a file to HDFS
+hdfs dfs -put /home/localfile.txt /user/data/
+
+# Download a file from HDFS to local file system
+hdfs dfs -get /user/data/localfile.txt /home/
+
+# Remove a file from HDFS
+hdfs dfs -rm /user/data/localfile.txt
+
+# View the contents of a file in HDFS
+hdfs dfs -cat /user/data/file.txt
+
+
+

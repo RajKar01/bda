@@ -1,0 +1,132 @@
+sudo apt install python3
+sudo apt install python3-pip
+pip3 install jupyter
+
+
+1. Theory: 
+Data visualization in R is typically performed using popular libraries like ggplot2, which provides a flexible and powerful grammar for creating a wide range of plots.
+Visualizations help in understanding patterns, trends, and insights from datasets by converting numerical data into graphical representations.
+R offers various plot types, including scatter plots, line charts, bar plots, and histograms, among others.
+ggplot2 allows for customizable and layered plotting, where multiple types of plots and aesthetics can be combined in one figure.
+Visualizing data helps in exploratory data analysis (EDA), enabling better decision-making and hypothesis generation.
+
+
+code:
+1. sudo apt-get update
+2. sudo apt-get install r-base
+3. sudo apt-get install python3 python3-pip
+4. pip3 install notebook
+5. pip3 install rpy2
+6 on notebook
+%load_ext rpy2.ipython
+
+1. %%R
+# Generate 100 random numbers between 1 and 50
+random_numbers <- sample(1:50, 100, replace=TRUE)
+
+# Create a simple histogram
+hist(random_numbers,
+     main="Histogram of Random Numbers",
+     xlab="Random Numbers",
+     col="lightblue",
+     border="black")
+
+2. %%R
+# Example: Simple line plot of numbers
+x <- 1:10
+y <- x^2  # y is the square of x
+
+plot(x, y, type="l",  # 'l' indicates a line plot
+     col="red",
+     main="Line Plot: x vs x^2",
+     xlab="x",
+     ylab="x^2")
+
+
+---------------------------------------------------------------------------------------------
+
+collab
+1.
+!sudo apt-get install r-base
+!pip install rpy2
+%load_ext rpy2.ipython
+
+2.
+%%R
+# Generate 100 random numbers between 1 and 50
+random_numbers <- sample(1:50, 100, replace=TRUE)
+
+# Create a simple histogram
+hist(random_numbers,
+     main="Histogram of Random Numbers",
+     xlab="Random Numbers",
+     col="lightblue",
+     border="black")
+
+3.
+%%R
+# Example: Simple line plot of numbers
+x <- 1:10
+y <- x^2  # y is the square of x
+
+plot(x, y, type="l",  # 'l' indicates a line plot
+     col="red",
+     main="Line Plot: x vs x^2",
+     xlab="x",
+     ylab="x^2")
+
+---------------------------------------------------------------------------------------------
+software:
+
+1. # Generate 100 random numbers between 1 and 50
+random_numbers <- sample(1:50, 100, replace=TRUE)
+
+# Create a simple histogram
+hist(random_numbers,
+     main="Histogram of Random Numbers",
+     xlab="Random Numbers",
+     col="lightblue",
+     border="black")
+
+2. 
+
+# Example: Simple line plot of numbers
+x <- 1:10
+y <- x^2  # y is the square of x
+
+plot(x, y, type="l",  # 'l' indicates a line plot
+     col="red",
+     main="Line Plot: x vs x^2",
+     xlab="x",
+     ylab="x^2")
+
+
+3. 
+# Generate data for scatter plot
+x <- 1:10  # X-axis values
+y <- rnorm(10, mean=5, sd=2)  # Y-axis values generated from a normal distribution
+
+# Create a scatter plot
+plot(x, y, 
+     main="Scatter Plot: Random Normal Values",
+     xlab="X Values",
+     ylab="Y Values",
+     col="blue", 
+     pch=19)  # pch=19 indicates filled circles
+
+4. 
+# Data for pie chart
+categories <- c("Category A", "Category B", "Category C", "Category D")
+values <- c(10, 20, 30, 40)  # Values corresponding to each category
+
+# Create a pie chart
+pie(values, 
+    labels=categories, 
+    main="Pie Chart of Categories", 
+    col=rainbow(length(categories)))  # Rainbow colors for the slices
+
+
+
+
+Conclusion:
+Using R for data visualization, particularly with ggplot2, allows for creating informative and customizable plots. Visualizations help to convey insights and trends clearly, making it easier to interpret and communicate results from data analysis.

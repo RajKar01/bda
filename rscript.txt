@@ -1,0 +1,154 @@
+sudo apt install python3
+sudo apt install python3-pip
+pip3 install jupyter
+
+
+1. Theory:
+R is a programming language widely used for statistical computing, data analysis, and visualization.
+R scripts are files with .R extension that contain a series of R commands to perform tasks like data manipulation and modeling.
+Executing an R script involves running the code in the script either from an R console or through an Integrated Development Environment (IDE) like RStudio.
+R supports a wide variety of data types and packages, allowing for extensive statistical analysis and machine learning applications.
+Scripts can be executed from the command line, terminal, or within an R IDE for automating repetitive tasks and analyses.
+
+code:
+
+notebook
+1. open your terminal
+sudo apt-get update
+sudo apt-get install r-base
+
+
+2.after installing r run
+pip install rpy2
+
+
+3. Load rpy2 in Jupyter Notebook:
+%load_ext rpy2.ipython
+
+
+4. 
+%%R
+# Basic arithmetic operations in R
+a <- 10
+b <- 5
+
+# Addition
+sum_result <- a + b
+cat("Sum:", sum_result, "\n")
+
+# Subtraction
+sub_result <- a - b
+cat("Subtraction:", sub_result, "\n")
+
+# Multiplication
+mul_result <- a * b
+cat("Multiplication:", mul_result, "\n")
+
+# Division
+div_result <- a / b
+cat("Division:", div_result, "\n")
+
+# Conditional
+if (a > b) {
+  cat("a is greater than b\n")
+} else {
+  cat("b is greater than or equal to a\n")
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+
+or collab:
+!sudo apt-get install r-base
+!pip install rpy2
+%load_ext rpy2.ipython
+
+%%R
+# Basic arithmetic operations in R
+a <- 10
+b <- 5
+
+# Addition
+sum_result <- a + b
+cat("Sum:", sum_result, "\n")
+
+# Subtraction
+sub_result <- a - b
+cat("Subtraction:", sub_result, "\n")
+
+# Multiplication
+mul_result <- a * b
+cat("Multiplication:", mul_result, "\n")
+
+# Division
+div_result <- a / b
+cat("Division:", div_result, "\n")
+
+# Conditional
+if (a > b) {
+  cat("a is greater than b\n")
+} else {
+  cat("b is greater than or equal to a\n")
+}
+
+--------------------------------------------------------------------------------------------------
+Rcript software
+
+a <- 10
+b <- 5
+
+# Addition
+sum_result <- a + b
+cat("Sum:", sum_result, "\n")
+
+# Subtraction
+sub_result <- a - b
+cat("Subtraction:", sub_result, "\n")
+
+# Multiplication
+mul_result <- a * b
+cat("Multiplication:", mul_result, "\n")
+
+# Division
+div_result <- a / b
+cat("Division:", div_result, "\n")
+
+# Conditional
+if (a > b) {
+  cat("a is greater than b\n")
+} else {
+  cat("b is greater than or equal to a\n")
+}
+
+
+# Define a vector of numbers
+numbers <- c(10, 20, 30, 40, 50)
+
+# Calculate basic statistics
+mean_value <- mean(numbers)
+median_value <- median(numbers)
+
+# Print the mean and median
+print(paste("Mean:", mean_value))
+print(paste("Median:", median_value))
+
+# Create a data frame
+df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(24, 27, 22),
+  Course = c("BDA", "ML", "AI")
+)
+
+# View the data frame
+print(df)
+
+# Filter the data frame to find students older than 23
+filtered_df <- subset(df, Age > 23)
+print(filtered_df)
+
+
+
+
+
+Conclusion:
+Executing R scripts allows users to automate data analysis tasks, perform complex calculations, and visualize results efficiently. By saving commands in a script, it becomes easier to reproduce results and manage large data analyses.

@@ -1,0 +1,91 @@
+sudo apt install python3
+sudo apt install python3-pip
+pip3 install jupyter
+jupytet notebook
+
+1. Theory:
+The DGIM (Datar-Gionis-Indyk-Motwani) algorithm is used to estimate the count of 1's in a sliding window over a bit stream.
+It efficiently compresses the bit stream by organizing 1's into buckets of exponentially increasing sizes, reducing the need for large storage.
+The algorithm allows an approximate count of 1's, with the accuracy determined by how the buckets are grouped and merged.
+The size of buckets increases logarithmically as more bits are added, ensuring the space used grows slowly relative to the size of the window.
+DGIM is particularly useful for analyzing real-time data streams where storing all data points is impractical due to memory constraints.
+
+code: 
+
+import math
+
+# Create a 'data.txt' file with sample binary data
+with open('data.txt', 'w') as f:
+    # Writing a sample binary stream (you can modify this as needed)
+    f.write('1010010110110100101010111001010101110110010101010110111101010101010110100110')
+
+def checkAndMergeBucket(bucketList, k):
+    """
+    This function checks and merges buckets if there are more than 2 of the same size.
+    """
+    for i in range(k + 1):
+        # If a bucket has more than 2 timestamps, merge them
+        while len(bucketList[i]) > 2:
+            # Remove the oldest timestamp
+            bucketList[i].pop(0)
+
+            # If we're not at the last bucket, merge with the next size
+            if i + 1 >= len(bucketList):
+                # Only remove from the current bucket if no next bucket
+                break
+            else:
+                # Merge the remaining timestamp with the next bucket
+                bucketList[i + 1].append(bucketList[i].pop(0))
+
+# Constants for the DGIM algorithm
+K = 1000  # Window size to track
+N = 1000  # Stream size (total bits in the stream)
+k = int(math.floor(math.log(N, 2)))  # Maximum bucket size (based on log of N)
+t = 0  # Current time
+onesCount = 0  # Estimated number of 1s in the last K bits
+
+# Initialize bucket list (buckets for sizes 1, 2, 4, 8, ...)
+bucketList = []
+for i in range(k + 1):
+    bucketList.append([])
+
+# Open the stream file (data.txt) to read binary data
+with open('data.txt') as f:
+    while True:
+        c = f.read(1)  # Read one character (bit) from the stream
+
+        if not c:  # If no more characters, stop
+            # Print the current bucket structure and calculate the number of 1s
+            for i in range(k + 1):
+                for j in range(len(bucketList[i])):
+                    print(f"Size of bucket: {2 ** i}, timestamp: {bucketList[i][j]}")
+
+            # Calculate the number of 1s in the last K bits
+            earliestTimestamp = bucketList[-1][0] if bucketList[-1] else 0
+            onesCount = 0
+            for i in range(k + 1):
+                for j in range(len(bucketList[i])):
+                    if bucketList[i][j] != earliestTimestamp:
+                        onesCount += pow(2, i)  # Add full size for each bucket
+                    else:
+                        onesCount += 0.5 * pow(2, i)  # Add half the size for the oldest bucket
+            print(f"Estimated number of ones in the last {K} bits: {int(onesCount)}")
+            break  # Exit the loop once the entire stream is processed
+
+        t = (t + 1) % N  # Update time for each bit processed (mod N for circular time)
+
+        # Remove buckets whose timestamps fall outside the window
+        for i in range(k + 1):
+            bucketList[i] = [bucketTimestamp for bucketTimestamp in bucketList[i] if bucketTimestamp > t - K]
+
+        # If the bit is '1', add a new bucket of size 1 at the current time
+        if c == '1':
+            bucketList[0].append(t)
+            checkAndMergeBucket(bucketList, k)
+
+        # If the bit is '0', do nothing (continue processing the stream)
+
+
+
+conclusion:
+The DGIM algorithm provides an efficient and scalable solution to estimate the number of 1's in a sliding window using logarithmic space. Its ability to compress data into buckets makes it a powerful tool for real-time stream processing, reducing memory usage without significantly affecting

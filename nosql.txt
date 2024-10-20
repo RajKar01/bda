@@ -1,0 +1,97 @@
+1. Theory: mycompiler.io
+NoSQL databases provide a flexible schema-less model, suitable for handling large-scale, unstructured, or semi-structured data. Unlike traditional relational databases, NoSQL databases do not rely on tables and fixed schemas.
+MongoDB is a popular NoSQL database that stores data in the form of documents (similar to JSON format), making it easy to manage complex hierarchical data.
+NoSQL operations in MongoDB include creating collections, inserting, updating, and deleting documents, along with querying the data.
+Document-oriented databases allow for faster data retrieval and flexibility as fields can vary across different documents in the same collection.
+MongoDB’s CRUD (Create, Read, Update, Delete) operations allow users to manage data efficiently in a NoSQL environment.
+
+
+code:
+
+terminal :
+
+mongo
+
+use myDatabase
+
+db.createCollection("myCollection")
+
+db.myCollection.insertMany([
+  { name: "Alice", age: 25, city: "New York" },
+  { name: "Bob", age: 30, city: "Los Angeles" }
+])
+
+db.myCollection.insertOne({ name: "Charlie", age: 35, city: "Chicago" })
+
+db.myCollection.find()
+
+db.myCollection.updateOne({ name: "Alice" }, { $set: { age: 26 } })
+
+db.myCollection.deleteOne({ name: "Bob" })
+
+db.myCollection.find()
+
+db.myCollection.drop()
+
+db.dropDatabase()
+
+
+
+HBASE:
+
+# Open HBase shell
+hbase shell
+
+# Create a new table with two column families: 'personal' and 'academic'
+create 'students', 'personal', 'academic'
+
+# Insert data into a specific row and column family
+put 'students', '1', 'personal:name', 'John'
+put 'students', '1', 'personal:age', '22'
+put 'students', '1', 'academic:course', 'Big Data Analytics'
+
+# Retrieve data from a specific row
+get 'students', '1'
+# Fetches the entire row with key '1' from the 'students' table.
+
+# Update an existing cell in the table
+put 'students', '1', 'personal:age', '23'
+
+# Delete data from a specific column
+delete 'students', '1', 'personal:age'
+# Deletes the `age` column for the row '1'.
+
+# List all tables in HBase
+list
+
+
+---------------------------------------------------------------------------------------------------------------
+
+mycompiler.io(online)
+// Switch to the database (or create it if it doesn't exist)
+use myDatabase
+
+// 2. Create a collection named "myCollection"
+db.createCollection("myCollection")
+
+// 4. Insert multiple documents into "myCollection"
+db.myCollection.insertMany([
+  { name: "Alice", age: 25, city: "New York" },
+  { name: "Bob", age: 30, city: "Los Angeles" }
+])
+
+// 9. Find and display all documents in the collection
+db.myCollection.find()
+
+// 11. Update the age of "Alice" to 26
+db.myCollection.updateOne({ name: "Alice" }, { $set: { age: 26 } })
+
+// 13. Delete the document where the name is "Bob"
+db.myCollection.deleteOne({ name: "Bob" })
+
+// 15. Find and display all remaining documents in the collection
+db.myCollection.find()
+
+
+Conclusion:
+NoSQL databases like MongoDB provide a flexible and efficient way to manage unstructured or semi-structured data. Through basic CRUD operations (insert, query, update, delete), MongoDB allows users to handle large volumes of data without predefined schemas, making it ideal for modern, data-intensive applications.
